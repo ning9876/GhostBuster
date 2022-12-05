@@ -22,9 +22,9 @@ port_scan() {
 bruteforce() {
     if grep -q 80/tcp Scans/${1}/${1}.txt; then
         echo -e "[${yellow}*${default}] Port 80(HTTP) is open. Starting bruteforce...\n"
-		sleep 1
-		#hydra -L $user -P $pass $1 http-get -f -q -e ns -o Output/${1}/http-get_${1}.txt -I -V / -t $thread
-        gobuster dir -u http://$1 -w /usr/share/wordlists/dirb/common.txt -o Output/${1}/http-get_${1}.txt -v -t $thread
+	sleep 1
+	#hydra -L $user -P $pass $1 http-get -f -q -e ns -o Output/${1}/http-get_${1}.txt -I -V / -t $thread
+        gobuster dir -u http://$1 -w /usr/share/wordlists/dirb/common.txt -o Output/${1}/http-get_${1}.txt -t $thread
         finished_brute $1
     else
         echo -e "[${red}!${default}] Port 80(HTTP) is not open...."
@@ -32,9 +32,9 @@ bruteforce() {
 
     if grep -q 443/tcp Scans/${1}/${1}.txt; then
         echo -e "[${yellow}*${default}] Port 443(HTTPS) is open. Starting bruteforce...\n"
-		sleep 1
-		#hydra -L $user -P $pass $1 https-get -s 443 -f -q -e ns -o Output/${1}/https-get_${1}.txt -I -V -m / -t $thread
-        gobuster dir -u https://$1 -w /usr/share/wordlists/dirb/common.txt -o Output/${1}/http-get_${1}.txt -v -t $thread
+	sleep 1
+	#hydra -L $user -P $pass $1 https-get -s 443 -f -q -e ns -o Output/${1}/https-get_${1}.txt -I -V -m / -t $thread
+        gobuster dir -u https://$1 -w /usr/share/wordlists/dirb/common.txt -o Output/${1}/http-get_${1}.txt -t $thread
         finished_brute $1
     else
         echo -e "[${red}!${default}] Port 443(HTTPS) is not open, quitting..."
