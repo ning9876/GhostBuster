@@ -39,26 +39,6 @@ bruteforce() {
     else
         echo -e "[${red}!${default}] Port 443(HTTPS) is not open, quitting..."
     fi
-
-    #if grep -q 8000/tcp Scans/${1}/${1}.txt; then
-        #echo -e "[${yellow}*${default}] Port 8000(HTTP HEAD) is open. Starting bruteforce...\n"
-		#sleep 1
-		#hydra -L $user -P $pass $1 http-head -s 8000 -f -q -e ns -o Output/${1}/http-head_8000_${1}.txt -I -V -m / -t $thread
-		#gobuster dir -u http://$1 -w /usr/share/wordlists/dirb/commont.txt -o Output/${1}/http-get_${1}.txt -v -t $thread
-        #finished_brute $1
-    #else
-        #echo -e "[${red}!${default}] Port 8080(HTTP HEAD) is not open..."
-    #fi
-
-    #if grep -q 8080/tcp Scans/${1}/${1}.txt; then
-        #echo -e "[${yellow}*${default}] Port 8080(HTTP HEAD) is open. Starting bruteforce...\n"
-	    #sleep 1
-		#hydra -L $user -P $pass $1 http-head -S 8080 -f -q -e ns -o Output/${1}/http-head_8080_${1}.txt -I -V -m / -t $thread
-		#gobuster dir -u http://$1 -w /usr/share/wordlists/dirb/commont.txt -o Output/${1}/http-get_${1}.txt -v -t $thread
-        #finished_brute $1
-    #else
-        #echo -e "[${red}!${default}] Port 8080(HTTP HEAD) is not open, quitting..."
-    #fi
 }
 
 finished_brute() {
