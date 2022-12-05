@@ -2,7 +2,7 @@
 
 help() {
 	splash
-	echo -e "[${yellow}*${default}] Usage: ./${red}nssecu2${default} <target/file> <threads>"
+	echo -e "[${yellow}*${default}] Usage: ./${red}ns${default} <target/file> <threads>"
 }
 
 report() {
@@ -77,7 +77,7 @@ finished_brute() {
 
     if [ $# -eq 0 ]; then
                 echo -e "[${red}!${default}] Error: No arguments supplied."
-                echo -e "[${yellow}*${default}] Usage: ./nssecu2 <target/file> <threads>"
+                echo -e "[${yellow}*${default}] Usage: ./ns <target/file> <threads>"
 		exit
 	fi
 
