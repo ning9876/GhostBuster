@@ -1,8 +1,6 @@
 #!/bin/bash
-
 help() {
-	splash
-	echo -e "[${yellow}*${default}] Usage: ./${red}ns${default} <target/file> <threads>"
+	echo -e "[${yellow}*${default}] Usage: ./${red}t14m4t${default} <target/file> <threads>"
 }
 
 report() {
@@ -20,11 +18,28 @@ port_scan() {
 }
 
 bruteforce() {
+   
     if grep -q 80/tcp Scans/${1}/${1}.txt; then
         echo -e "[${yellow}*${default}] Port 80(HTTP) is open. Starting bruteforce...\n"
-	sleep 1
-	#hydra -L $user -P $pass $1 http-get -f -q -e ns -o Output/${1}/http-get_${1}.txt -I -V / -t $thread
+		sleep 1
+		#hydra -L $user -P $pass $1 http-get -f -q -e ns -o Output/${1}/http-get_${1}.txt -I -V / -t $thread
         gobuster dir -u http://$1 -w /usr/share/wordlists/dirb/common.txt -o Output/${1}/http-get_${1}.txt -t $thread
+        file="/home/kali/Downloads/n"
+       
+       
+      	while read -r line; do
+        gobuster dir -u http://$1/$line -w /usr/share/wordlists/dirb/common.txt -o Output/${1}/http-get_${1}.txt -t $thread
+    	done<$file
+    	
+    	for ((x=0;x<$3-2;x++));
+        do
+    	while read -r line; do
+      	this+="$slash$line"
+        gobuster dir -u http://$1/$line$this -w /usr/share/wordlists/dirb/common.txt -o Output/${1}/http-get_${1}.txt -t $thread
+        this=""
+    	done<$file
+    	
+        done
         finished_brute $1
     else
         echo -e "[${red}!${default}] Port 80(HTTP) is not open...."
@@ -32,9 +47,16 @@ bruteforce() {
 
     if grep -q 443/tcp Scans/${1}/${1}.txt; then
         echo -e "[${yellow}*${default}] Port 443(HTTPS) is open. Starting bruteforce...\n"
-	sleep 1
-	#hydra -L $user -P $pass $1 https-get -s 443 -f -q -e ns -o Output/${1}/https-get_${1}.txt -I -V -m / -t $thread
-        gobuster dir -u https://$1 -w /usr/share/wordlists/dirb/common.txt -o Output/${1}/http-get_${1}.txt -t $thread
+		sleep 1
+		#hydra -L $user -P $pass $1 https-get -s 443 -f -q -e ns -o Output/${1}/https-get_${1}.txt -I -V -m / -t $thread
+        gobuster dir -u http://$1 -w /usr/share/wordlists/dirb/common.txt -o Output/${1}/http-get_${1}.txt -t $thread
+        file="/home/kali/Downloads/n"
+        for ((x=0;x<$3;x++));
+        do
+      	while read -r line; do
+        gobuster dir -u http://$1/$line -w /usr/share/wordlists/dirb/common.txt -o Output/${1}/http-get_${1}.txt -t $thread
+    	done<$file
+        done
         finished_brute $1
     else
         echo -e "[${red}!${default}] Port 443(HTTPS) is not open, quitting..."
@@ -52,8 +74,8 @@ finished_brute() {
 	default='\033[0;39m'
 
     thread="16"
+    slash="/"
 
-	splash
 
     if [ $# -eq 0 ]; then
                 echo -e "[${red}!${default}] Error: No arguments supplied."
@@ -89,4 +111,4 @@ finished_brute() {
 	sleep 1
 	report $1
 	port_scan $1
-	bruteforce $1 $2
+	bruteforce $1 $2 $3
