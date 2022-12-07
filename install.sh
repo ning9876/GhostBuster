@@ -1,7 +1,8 @@
 #!/bin/bash
 
 if [ -x "$(command -v pacman)" ]; then
-	pacman -Sy nmap hydra nslookup netdiscover
+	pacman -Sy nmap hydra awk gobuster
 elif [ -x "$(command -v apt)" ]; then
-	apt install nmap hydra nslookup netdiscover
+	apt-get update
+	apt install nmap hydra awk gobuster
 fi
