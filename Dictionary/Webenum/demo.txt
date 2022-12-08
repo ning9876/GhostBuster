@@ -527,7 +527,6 @@ ccs
 main.ccs
 avatar.jpg
 fulls
-thumbs
 js
 01.jpg
 02.jpg
