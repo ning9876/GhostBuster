@@ -5,7 +5,7 @@ GhostBuster scans the open port of services HTTP and HTTPS,  and starts the brut
 
 # **Installation**
 ```
-git clone https://github.com/ning9876/GhostBuster 
+git clone https://github.com/ning9876/GhostBuster  
 cd ghostbuster
 sudo bash install.sh
 sudo chmod +x ghostbuster
