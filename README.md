@@ -1,4 +1,4 @@
-# **GhostBuster**
+# **Introduction**
 GhostBuster is an automated brute-forcing attack tool made to enumerate web directories and respective subdirectories. It combines the function of Nmap Security Scanner and Gobuster aiming to ease the enumeration process. 
 
 GhostBuster scans the open port of services HTTP and HTTPS,  and starts the brute force attack using the common web directory wordlist. 
