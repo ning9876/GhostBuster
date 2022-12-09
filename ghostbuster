@@ -194,7 +194,7 @@ finished_brute() {
 	fi
 	
 	if [ -z "$4" ]; then
-        default='../NSSECU-Grp5/demo.txt'
+        default='Dictionary/Webenum/demo.txt'
         else 
         default=$4
         fi
