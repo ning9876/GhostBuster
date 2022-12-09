@@ -1,6 +1,6 @@
 #! /bin/bash
 help() {
-	echo -e "[${yellow}*${default}] Usage: ./overseeker <target/file> <threads>"
+	echo -e "[${yellow}*${default}] Usage: ./ <target/file> <threads>"
 }
 
 report() {
@@ -311,7 +311,7 @@ finished_brute() {
 
         if [ $# -eq 0 ]; then
                 echo -e "[${red}!${default}] Error: No arguments supplied."
-                echo -e "[${yellow}*${default}] Usage: ./overseeker <target/file> <threads>"
+                echo -e "[${yellow}*${default}] Usage: ./ <target/file> <threads>"
 
 		exit
 	fi
